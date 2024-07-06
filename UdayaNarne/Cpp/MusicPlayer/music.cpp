@@ -8,8 +8,6 @@ using namespace std;
 
 class songDetails {
 private:                            //Provides Encapsulation
-    string songName;
-    string artistName;
     int duration;
     int rating = 0;
     int subscribers;
@@ -17,7 +15,9 @@ private:                            //Provides Encapsulation
     vector<songDetails> likedSongsVector;
 
     // Constructor
-public:                                         //Those Details can only be accessed by some sort of medthods
+public:     //Those Details can only be accessed by some sort of medthods
+    string songName;
+    string artistName;
     songDetails(string name, string artist) {
         songName = name;
         artistName = artist;
@@ -29,6 +29,7 @@ public:                                         //Those Details can only be acce
         likedSongs.push(song);
         likedSongsVector.push_back(song);
         rating++;
+        cout<<"Rating after Liking the song:"<<rating<<endl;
     }
 
     // Function to unlike a song
@@ -42,15 +43,16 @@ public:                                         //Those Details can only be acce
                 likedSongsVector.erase(it);
             }
         }
+        cout<<"Rating after disliking the song:"<<rating<<endl;
     }
     //Print the details of the particular song
     void Details(songDetails &song1){
         cout << "Song Name: " << song1.songName << endl;
         cout << "Artist Name: " << song1.artistName << endl;
         song1.LikedSong(song1);
-        cout << "Rating after liking: " << song1.rating << endl;
+        //cout << "Rating after liking: " << song1.rating << endl;
         song1.UnlikedSong();
-        cout << "Rating after unliking: " << song1.rating << endl;
+        //cout << "Rating after unliking: " << song1.rating << endl;
     }
 
     // Operator overloading for equality
@@ -65,13 +67,13 @@ int main() {
     songDetails song1("Heat Waves", "Glass Animals");
     availableSongs.push_back(song1);
 
-    song1.LikedSong(song1);
+    
     cout << "Song Name: " << song1.songName << endl;
     cout << "Artist Name: " << song1.artistName << endl;
-    cout << "Rating after liking: " << song1.rating << endl;
-
+    //cout << "Rating after liking: " << song1.rating << endl;
+    song1.LikedSong(song1);
     song1.UnlikedSong();
-    cout << "Rating after unliking: " << song1.rating << endl;
+    //cout << "Rating after unliking: " << song1.rating << endl;
 
     return 0;
 }
